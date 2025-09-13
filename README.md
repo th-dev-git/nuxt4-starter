@@ -1,2 +1,7 @@
-# nuxt4-starter
-Nuxt4 with ESLint, Test, tailwind4, etc
+# Opinionated Nuxt4 Starter
+
+## Using Bun
+
+- ESLint (antfu)
+- Test
+- Tailwindcss
