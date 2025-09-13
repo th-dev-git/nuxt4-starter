@@ -1,14 +1,18 @@
+/* eslint-disable node/no-process-env */
 import { z } from "zod/mini";
 
 const EnvSchema = z.object({
   NODE_ENV: z.string(),
+  DATABASE_URL: z.string(),
+  CLOUDFLARE_ACCOUNT_ID: z.string(),
+  CLOUDFLARE_DATABASE_ID: z.string(),
+  CLOUDFLARE_D1_TOKEN: z.string(),
 });
 
 export type EnvSchema = z.infer<typeof EnvSchema>;
 
-// eslint-disable-next-line node/no-process-env
 const result = z.safeParse(EnvSchema, process.env);
-if (!result.success) {
+if (!result.success && process.env.NODE_ENV !== "development") {
   let message = "Missing required values in .env:\n";
   result.error.issues.forEach((issue) => {
     message += `\t-->  ${String(issue.path[0])}\n`;
@@ -18,4 +22,4 @@ if (!result.success) {
   throw e;
 }
 
-export default EnvSchema.parse(result.data);
+export default result.data as EnvSchema;
