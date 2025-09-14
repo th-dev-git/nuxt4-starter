@@ -1,6 +1,8 @@
 {
   "name": "nuxt-starter",
-  "main": "lib/db/index.ts",
+  "assets": {
+    "directory": ".output/public"
+  },
   "compatibility_date": "2024-09-26",
   "compatibility_flags": [
     "nodejs_compat"

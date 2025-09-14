@@ -12,7 +12,8 @@ const EnvSchema = z.object({
 export type EnvSchema = z.infer<typeof EnvSchema>;
 
 const result = z.safeParse(EnvSchema, process.env);
-if (!result.success && process.env.NODE_ENV !== "development") {
+console.log("🚀 ~ :15 ~ process.env:", process.env);
+if (!result.success) {
   let message = "Missing required values in .env:\n";
   result.error.issues.forEach((issue) => {
     message += `\t-->  ${String(issue.path[0])}\n`;
